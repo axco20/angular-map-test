@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="mapApp">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Map Demo</title>
+  <!-- Load Leaflet CSS to help style map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    /* CSS for page background and centering */
+    body {
+      font-family: sans-serif;
+      background: #000000;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+    }
+    /* Styling for the map and controls */
+    .map-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 1500px;
+    }
+    /* Styling for header bar, includes title, input and button */
+    .map-card header {
+      padding: 0.5rem 1rem;
+      background: #2c3e50;
+      color: #ecf0f1;
+      display: flex;
+      align-items: center;
+    }
+    .map-card header h1 {
+      flex: 1;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .map-card header input {
+      flex: 2;
+      padding: 0.4rem;
+      border: none;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+    }
+    .map-card header button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 4px;
+      background: #34db47;
+      color: white;
+      cursor: pointer;
+    }
+    .map-card #map {
+      height: 1000px;
+    }
+  </style>
+</head>
+<body ng-controller="MainCtrl as ctrl">
+
+  <div class="map-card">
+    <header>
+      <h1>LyteForge Openstreet Locations</h1>
+      <!-- Input that allows user to enter city/state to query -->
+      <input
+        type="text"
+        placeholder="Enter city, state, etc."
+        ng-model="ctrl.address"
+      >
+      <!-- Button that triggers a search when it is clicked -->
+      <button ng-click="ctrl.search()">Search</button>
+    </header>
+
+    <!-- Leaflet map is initialized here. Latitude and Longitude are initialized to ctrl.lat and ctrl.lon -->
+    <div
+      id="map"
+      map-directive
+      lat="ctrl.lat"
+      lon="ctrl.lon"
+    ></div>
+  </div>
+
+<!-- Load libraries and scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+  <script src="map.directive.js"></script>
+</body>
+</html>
